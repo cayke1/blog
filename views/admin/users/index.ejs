@@ -1,0 +1,39 @@
+<%- include('../../partials/header') %>
+
+<%- include('../../partials/navbar') %>
+
+<div class="container">
+    <hr>
+    <h2>Usuários</h2>
+    <a href='/admin/users/create' class="btn btn-success">Criar novo user</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Senha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user => { %>
+                <tr>
+                    <th><%= user.id %></th>
+                    <th><%= user.email %></th>
+                    <th><%= user.password %></th>
+                </tr>
+            <%     })  %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../../partials/footer') %>
+<script>
+    function confirmDelet(event, form){
+        event.preventDefault();
+        var decision = confirm('Você quer deletar este usuário?');
+        if (decision){
+            form.submit();
+        }
+    }
+</script>
