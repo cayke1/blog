@@ -42,6 +42,8 @@ app.use('/',usersController);
 
 app.get('/', (req, res) => {
 
+    adm = req.session.user;
+
     Article.findAll({
         order:[
             ['id', 'DESC']
@@ -50,7 +52,7 @@ app.get('/', (req, res) => {
     }).then(articles => {
 
         Category.findAll().then(categories => {
-            res.render('index', {articles: articles, categories: categories});
+            res.render('index', {articles: articles, categories: categories, adm: adm});
         })
     });
 })
